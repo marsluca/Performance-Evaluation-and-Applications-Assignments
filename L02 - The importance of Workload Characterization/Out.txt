@@ -1,0 +1,29 @@
+File name: Log1.txt
+Average Inter-arrival time: 392.330669
+Arrival Rate : 0.002549
+Variance: 160969.403675
+Variability (Coefficient of Variation of Inter_Arrival): 1.021610
+Correlation (cross-covariance for m=1): -6710.648829
+
+File name: Log2.txt
+Average Inter-arrival time: 399.600400
+Arrival Rate : 0.002502
+Variance: 0.000000
+Variability (Coefficient of Variation of Inter_Arrival): 0.000000
+Correlation (cross-covariance for m=1): 0.000000
+
+File name: Log3.txt
+Average Inter-arrival time: 256.213786
+Arrival Rate : 0.003903
+Variance: 190245.166266
+Variability (Coefficient of Variation of Inter_Arrival): 1.700671
+Correlation (cross-covariance for m=1): 86244.932232
+
+File name: Log4.txt
+Average Inter-arrival time: 369.455544
+Arrival Rate : 0.002707
+Variance: 902056.733108
+Variability (Coefficient of Variation of Inter_Arrival): 2.568152
+Correlation (cross-covariance for m=1): -31114.926176
+
+>> 

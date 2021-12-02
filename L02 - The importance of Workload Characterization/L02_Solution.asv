@@ -29,9 +29,8 @@ function run(filename, i)
     %% The average inter arrival time [sec]
     % The "Inter arrival time" measures the time between the arrivals of two jobs
     Sum_Inter_Arrival = 0;
-    N_IA = A-1;
-    Inter_Arrival = zeros(1,N_IA);
-    
+    Inter_Arrival = zeros(1,A-1);
+
     for row = 2:A
         difference = table_sec(row,:)-table_sec(row-1,:);
         Inter_Arrival(row-1) = difference;
@@ -49,27 +48,23 @@ function run(filename, i)
     
     %% Variability
     V = var(Inter_Arrival);
-    fprintf('Variance: %f\n', V);
+    fprintf('Variability : %f\n', V);
     
-    % Standard Deviation
-    std = sqrt(V);
-    % First moment - mean
-    m1 = sum(Inter_Arrival) / N_IA;
     % Coefficient of Variation
-    cv =  std/m1;  
-    fprintf('Variability (Coefficient of Variation of Inter_Arrival): %f\n', cv);
+    stdX = sqrt(varX);
+    m1 = sum(records) / N_IA;
+    cv =  stdX/m1;  
+    fprintf('Coefficient of Variation: %f\n', cv);
+    
     
     %% Correlation
-    % The cross-covariance for m=1
-    ccv1 = sum((Inter_Arrival(1:N_IA-1)-m1).*(Inter_Arrival(2:N_IA))/(N_IA-1));
-    fprintf('Correlation (cross-covariance for m=1): %f\n', ccv1);
+    table_sec_copy =  table_sec;
+    table_sec_copy(1,:) = [];
+    table_sec(A,:) = [];
     fprintf('\n');
+    %fprintf('Correlation : %f\n', V);
     
     %% Plotting phase
     figure(i);
-    for j = 1:(N_IA-1) 
-        plot(Inter_Arrival(j), Inter_Arrival(j+1), ".");
-        hold on;
-        drawnow;
-    end
+    scatter(table_sec(:,1), table_sec_copy(:,1), '.'); 
 end
