@@ -18,26 +18,26 @@ function run(filename, i)
     
     % First moment - mean
     m1 = sum(records) / N_IA;
-    fprintf('First moment: %f\n', m1);
+    fprintf('First moment: %f or %f \n', m1, mean(records));
     
     % Second moment - standard deviation
     m2 = sum(records.^2) / N_IA;
-    fprintf('Second moment: %f\n', m2);
+    fprintf('Second moment: %f or %f\n', m2, mean(records.^2));
     
     % Third moment
     m3 = sum(records.^3) / N_IA;
-    fprintf('Third moment: %f\n', m3);
+    fprintf('Third moment: %f or %f\n', m3, mean(records.^3));
     
     % Fourth moment
     m4 = sum(records.^4) / N_IA;
-    fprintf('Fourth moment: %f\n', m4);
+    fprintf('Fourth moment: %f or %f\n', m4, mean(records.^4));
     fprintf('---------------------------\n');
     
     %% The second, third and fourth centered moments
     % Second centered moments (or Variance)
     cm2 = sum((records - m1).^2)/N_IA;
     varX = m2 - m1^2;
-    fprintf('Second centered moment (or variance): %f or %f\n', cm2, varX);
+    fprintf('Second centered moment (or variance): %f or %f or %f\n', cm2, varX, var(records));
     
     % Third centered moment
     cm3 = sum((records - m1).^3)/N_IA;
@@ -64,7 +64,7 @@ function run(filename, i)
     
     %% Coefficient of Variation and Kurtosis
     % Coefficient of Variation
-    cv =  stdX/m1;  
+    cv = stdX/m1;  
     fprintf('Coefficient of Variation: %f\n', cv);
      
     % Kurtosis
@@ -104,8 +104,7 @@ function run(filename, i)
     %% Plotting phase
     figure(i);
     % I have to sort the elements to display well the resoults
-    records_sorted=sort(records);
-    plot(records_sorted, [1:N_IA]/N_IA, "+");
+    plot(sort(records), [1:N_IA]/N_IA, "+");
 end
 
 %% Mine percentile function, linear interpolation

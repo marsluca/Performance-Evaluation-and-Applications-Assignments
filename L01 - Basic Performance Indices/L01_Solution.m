@@ -9,6 +9,8 @@ function run(filename)
     fprintf('File name: %s\n', filename);
     % Arrival time, Departure time
     records = readmatrix(filename);
+    
+    %% Arrival rate and throughput
     % Number of arrivals
     A = size(records, 1);
     % Completions
@@ -24,7 +26,14 @@ function run(filename)
     % Throughput (X=C/T)
     X = C/T;
     fprintf('Throughput: %f\n', X);
-
+    
+    %% Busy time
+    
+    
+    %% Utilization
+    
+    
+    %% W
     % Response time = difference between the
     % departure time and the arrival time
     % All the elements of the second column - All the elements of the first column
@@ -34,17 +43,20 @@ function run(filename)
     W = sum(r_i);
     fprintf('W: %d\n', W);
 
-    % Average Number of Jobs in the system
+    %% Average Number of Jobs in the system
     % (Little's law rielaboration)
     N = W/T;
     fprintf('Average Number of Jobs: %f\n', N);
 
-    % Average Response Time
+    %% Average Response Time
     % (Little's law rielaboration)
     R = W/C;
     fprintf('Average Response Time: %f\n', R);
 
-    % Probability response time < threshold
+    %% Probability of having m jobs in the station (with m = 0, 1, 2, 3)
+    
+    
+    %% Probability response time < threshold
     p = sum([r_i<1, r_i<10, r_i<50]) / C;
     fprintf('P(R<1):%f P(R<10):%f P(R<50):%f\n', p(1), p(2), p(3));
     fprintf('\n');
