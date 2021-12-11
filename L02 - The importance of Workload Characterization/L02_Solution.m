@@ -20,7 +20,7 @@ function run(filename, i)
     %% Number of arrivals
     A = size(table_sec, 1);
 
-    %% Set time zero
+    %% Set first arrival at time zero
     start_value = table_sec(1,:);
     for row = 1:A
         table_sec(row,:) = table_sec(row,:) - start_value;

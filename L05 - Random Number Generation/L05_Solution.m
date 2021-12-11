@@ -79,7 +79,7 @@ run(outHyperErlang, 'Hyper-Erlang distribution');
 
 figure('Name', sprintf('Distributions for N=%d', N),'NumberTitle','off');
 plot(sort(outUniform), y, '-b', sort(outDiscrete), y, '-r', sort(outExponential),y, '-y', sort(outHyper), y, '-m', sort(outHypo), y, '-g', sort(outHyperErlang), y, '-c');
-legend('Uniform distribution', 'Discrete distribution', 'Exponential distribution', 'Hyper-exponential distribution', 'Hypo-exponential distribution', 'Hyper-Erlang distribution');
+legend('Uniform', 'Discrete', 'Exponential', 'Hyper-exponential', 'Hypo-exponential', 'Hyper-Erlang');
 xlim([0 50])
 
 function run(out, name)

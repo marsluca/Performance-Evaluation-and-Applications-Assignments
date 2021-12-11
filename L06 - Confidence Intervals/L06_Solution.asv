@@ -101,7 +101,7 @@ T = completationTime(end,:) - completationTime(1,:);
 
 %% 95% confidence intervals of Average Service time (S) = (sum of the service time) / (Number of jobs)
 fprintf('The 95%% confidence intervals are:\n');
-%gamma = 0.95;
+gamma = 0.95;
 % Average service time computed for each run
 confidenceIntervalN(serviceTimeN, 'Average Service time');
 
