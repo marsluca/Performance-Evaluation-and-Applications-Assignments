@@ -102,7 +102,7 @@ function run(filename, i)
     fprintf('\n');
     
     %% Plotting phase
-    figure(i);
+    figure('Name', filename, 'NumberTitle','off');
     % I have to sort the elements to display well the resoults
     plot(sort(records), [1:N_IA]/N_IA, "+");
 end

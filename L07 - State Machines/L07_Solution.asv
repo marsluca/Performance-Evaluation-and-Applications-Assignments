@@ -11,10 +11,15 @@ Ts1=0;
 Ts2=0;
 Ts3=0;
 
+roundTripTime = 0; 
+RTT = [];
+roundIndex = 1;
+
 while t < Tmax
     if s==1
         dt = -(log(rand()) + log(rand()) + log(rand())) / 0.1; 
         Ts1 = Ts1 + dt;
+        roundTripTime = roundTripTime + dt;
         if rand() < 0.8
 			ns = 2;
         else
@@ -26,8 +31,9 @@ while t < Tmax
         end 
     end
     if s==2
-        dt= -log(rand())/(0.01);
+        dt= -log(rand(N,1))/(0.);
         Ts2 = Ts2 + dt;
+        roundTripTime = roundTripTime + dt;
         if rand() < 0.5
             ns = 3;
         else
@@ -36,8 +42,12 @@ while t < Tmax
     end
     if s==3
         ns=1;
-        dt= -log(rand())/(0.005);
+        dt= 100 + rand() * (200-100);
         Ts3 = Ts3 + dt;
+        roundTripTime = roundTripTime + dt;
+        RTT(roundIndex,1) = roundTripTime;
+        roundTripTime = 0;
+        roundIndex = roundIndex + 1;
     end
     
     s = ns;
@@ -47,13 +57,10 @@ end
 
 %% Probability of every stage
 Ps1= Ts1/t;
-fprintf("Probability of being in First stage: %f\n", Ps1);
 Ps2= Ts2/t;
-fprintf("Probability of being in Second stage: %f\n", Ps2);
 Ps3= Ts3/t;
-fprintf("Probability of being in Third stage: %f\n", Ps3);
 
 %stairs(trace(:,1),trace(:,2));
 
 %% Utilization of the system
-fprintf("Utilization of the system: %f\n", Ps1+Ps2);
+

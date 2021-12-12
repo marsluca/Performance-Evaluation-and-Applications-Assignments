@@ -66,7 +66,7 @@ function run(filename, i)
     fprintf('\n');
     
     %% Plotting phase
-    figure(i);
+     figure('Name', filename, 'NumberTitle','off');
     for j = 1:(N_IA-1) 
         plot(Inter_Arrival(j), Inter_Arrival(j+1), ".");
         hold on;
