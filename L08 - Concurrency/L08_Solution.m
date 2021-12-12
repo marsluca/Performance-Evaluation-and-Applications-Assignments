@@ -6,6 +6,7 @@ t=0;
 
 Tmax = 3600;
 trace = [t,s];
+R_counter=0;
 
 % Report state
 Ts1=0;
@@ -16,6 +17,7 @@ Ts3=0;
 
 while t < Tmax
     if s==1
+        R_counter = R_counter + 1;
         % Exp distribution for Maintenance
         dtM = -log(rand())/(0.001);
         % Exp distribution for Working
@@ -67,4 +69,4 @@ fprintf("Probability of being in Maintenance stage: %f\n", Ps3);
 %stairs(trace(:,1),trace(:,2));
 
 %% Reporting frequency
-fprintf("Reporting frequency: %f\n", Ts1/Tmax);
+fprintf("Reporting frequency: %f\n", R_counter/t);

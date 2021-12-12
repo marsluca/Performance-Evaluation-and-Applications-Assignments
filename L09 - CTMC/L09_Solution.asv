@@ -21,7 +21,7 @@ p0 = [1, 0, 0, 0];
 
 [t, Sol] = ode45(@(t,x) Q'*x, [0 10000], p0');
 
-fprintf("Steady state probabilities:\n WW: %f\n FW: %f\n WF: %f\n FF: %f\n", Sol(end,1), Sol(end,2), Sol(end,3), Sol(end,4));
+fprintf("Steady state probabilities:\n WW: %f\n FW: %f\n WF: &f\n FF: &f\n", Sol(1:end), Sol(2:end), Sol(1:end), Sol(1:end));
 
 figure('Name', 'Probability of the states in the total range','NumberTitle','off');
 plot(t, Sol, "-");
