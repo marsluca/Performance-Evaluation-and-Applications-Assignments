@@ -4,7 +4,7 @@ clc;
 s=1;
 t=0;
 
-Tmax = 3600;
+Tmax = 10000;
 trace = [t,s];
 
 % Report state
@@ -34,15 +34,15 @@ while t < Tmax
         % Exp distribution for Manitance
         dtM = -log(rand())/(0.001);
         % Exp distribution for Report
-        dtR = -log(rand())/(0.05);
+        dtR = -log(rand())/(1);
         
         dt = min([dtM, dtR]);
-        Ts2 = Ts2 + dt;
+        Ts1 = Ts1 + dt;
         if(dt == dtM)
 			ns = 3;
         end
         if(dt == dtR)
-			ns = 1;
+			ns = 2;
         end
     end
     if s==3
@@ -66,5 +66,5 @@ fprintf("Probability of being in Maintenance stage: %f\n", Ps3);
 
 %stairs(trace(:,1),trace(:,2));
 
-%% Reporting frequency
-fprintf("Reporting frequency: %f\n", Ts1/Tmax);
+%% Utilization of the system
+fprintf("Utilization of the system: %f\n", Ps1+Ps2);
