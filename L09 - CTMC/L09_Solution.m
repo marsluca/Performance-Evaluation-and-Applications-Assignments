@@ -12,11 +12,13 @@ b = 1/MTTbackup;
 % From the graph for each row write the output arrows
 % Diagonal = sum with opposite sign
 %       s1    s2     s3     s4
-Q = [   -f-f, f  ,   f  ,   0;       %s1
+Q = [ -f-f,   f  ,   f  ,   0;       %s1
         r ,  -f-r,   0  ,   f;       %s2
         r ,   0  , -r-f ,   f;       %s3
         b ,   0  ,  0   ,   -b];     %s4
 
+% System starts in a state where both disks are working
+%    s1 s2  s3 s4
 p0 = [1, 0, 0, 0];
 
 [t, Sol] = ode45(@(t,x) Q'*x, [0 10000], p0');
