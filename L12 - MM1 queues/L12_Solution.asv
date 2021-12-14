@@ -23,11 +23,10 @@ fprintf("P(J>5): %f\n", U^(5+1));
 fprintf("Average queue length: %f\n", (U^2)/(1-U));
 
 %% Average response time
-R = D/(1-U);
-fprintf("Average response time: %f sec\n", R);
+fprintf("Average response time: %f sec\n", D/(1-U));
 
 %% Probability that the response time is greater than 0.5 s.
-fprintf("P(R>0.5): %f or %f\n", exp(-(0.5*(u-lambda))), exp(-(0.5/R)));
+fprintf("P(R>0.5): %f\n", exp(-(0.5/)));
 
 %% 90 percentile of the response time distribution
-fprintf("90 percentile of the response time: %f\n", -log(1-90/100)*R);
+fprintf("Utilization: %f\n", U);
