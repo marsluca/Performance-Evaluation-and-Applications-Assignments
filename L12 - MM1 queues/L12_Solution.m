@@ -1,7 +1,8 @@
 clear variables;
 clc;
 
-% Poisson process arrival rate
+% M/M/1 queue
+% Poisson process arrival rate [job/s]
 lambda = 10;
 % Avg Service time, (ms -> seconds)
 D = 85/1000;
