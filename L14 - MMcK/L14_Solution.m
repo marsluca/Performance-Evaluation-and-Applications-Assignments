@@ -7,7 +7,7 @@ global p0;
 %% M/M/1 queue
 fprintf("--- <Exercise 1 - M/M/1> ----\n");
 % Poisson process arrival rate [job/s]
-lambda = 0.95;
+lambda = 0.9;
 % Avg Service [seconds]
 D = 1;
 
@@ -73,7 +73,7 @@ p0 = double(p0);
 
 % Utilization
 % sum from 1 to c and from c+1 to k
-U = 1*prob_mmc6(1,c) + 2*prob_mmc6(2,c) + c*(prob_mmc6(3,c)+prob_mmc6(4,c)+prob_mmc6(5,c)+prob_mmc6(6,c));
+U = (1*prob_mmc6(1,c) + 2*prob_mmc6(2,c)) + c*(prob_mmc6(3,c)+prob_mmc6(4,c)+prob_mmc6(5,c)+prob_mmc6(6,c));
 %U = symsum(t*prob_mmc6(eval(t),c),t,1,c) + symsum(prob_mmc6(eval(t),c),t,c+1,k);
 fprintf("Utilization: %f\n", U);
 
