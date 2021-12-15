@@ -41,19 +41,19 @@ fprintf("Average number of jobs in the system: %f\n", 2*U/(1-U^2));
 fprintf("Average response time: %f sec\n", D/(1-U^2));
 fprintf("Average time spent in the queue: %f sec\n\n", ((U^2)*D)/(1-U^2));
 
-%% Exercise 2 - M/M/3
+%% Exercise 2 - M/M/c
 % Avg Service time [seconds]
 D = 2.7;
 c=3;
-fprintf("--- <Exercise 2 - M/M/3> ----\n");
+fprintf("--- <Exercise 2 - M/M/c> ----\n");
 % Average Utilization
 U = lambda*D/c;
 fprintf("Average Utilization (equal to the traffic intensity): %f\n", U);
 
 % Probability of having 4 jobs in the system
 syms k;
-p0=(((c*U)^c)/factorial(c)+)^-1;
-p4 = p0/((factorial(c))*c^(4-c))*(lamda*D)^4;
+p0=((((c*U)^c)/factorial(c))*((1-U)^(-1))+symsum((c*U)^k/factorial(k),k,0,c-1))^-1;
+p4 = (p0/(factorial(c)*c^(4-c)))*(lambda*D)^4;
 fprintf("P(J=4): %f\n", p4);
 
 % Average number of jobs in the system
@@ -64,3 +64,21 @@ fprintf("Average number of jobs in the system: %f\n", N);
 QueueTime = (D/(c*(1-U)))/(1+(1-U)*(factorial(c)/(c*U)^c)*symsum((c*U)^k/factorial(k),k,0,c-1));
 fprintf("Average response time: %f sec\n", D + QueueTime);
 fprintf("Average time spent in the queue: %f sec\n\n", QueueTime);
+
+%% Exercise 3 - M/M/inf
+% Avg Service time [seconds]
+D = 2.7;
+c=3;
+fprintf("--- <Exercise 3 - M/M/inf> ----\n");
+% Probability of having 4 jobs in the system
+p0=exp(-(lambda*D));
+p4 = (p0/factorial(c))*(lambda*D)^4;
+fprintf("P(J=4): %f\n", p4);
+
+% Average number of jobs in the system
+fprintf("Average number of jobs in the system: %f\n", lambda*D);
+
+% Average response time and the average time spent in the queue
+QueueTime = (D/(c*(1-U)))/(1+(1-U)*(factorial(c)/(c*U)^c)*symsum((c*U)^k/factorial(k),k,0,c-1));
+fprintf("Average response time: %f sec\n", D);
+fprintf("Average time spent in the queue: %f sec\n\n", 0);

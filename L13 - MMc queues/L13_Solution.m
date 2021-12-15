@@ -1,7 +1,6 @@
 clear variables;
 clc;
 
-% M/M/c queue
 % Poisson process arrival rate [job/s]
 lambda = 0.95;
 
@@ -20,8 +19,9 @@ fprintf("P(J=4): %f\n", (1-U)*U^4);
 fprintf("Average number of jobs in the system: %f\n", U/(1-U));
 
 % Average response time and the average time spent in the queue
-fprintf("Average response time: %f sec\n", D/(1-U));
-fprintf("Average time spent in the queue: %f sec\n\n", ((U*D)/(1-U)));
+R = D/(1-U);
+fprintf("Average response time: %f sec\n", R);
+fprintf("Average time spent in the queue: %f sec\n\n", R-D);
 
 %% Exercise 1 - M/M/2
 % Avg Service time [seconds]
@@ -50,10 +50,11 @@ fprintf("--- <Exercise 2 - M/M/c> ----\n");
 U = lambda*D/c;
 fprintf("Average Utilization (equal to the traffic intensity): %f\n", U);
 
+%Probability of having zero job in the system
+p0=((((c*U)^c)/factorial(c))*((1-U)^(-1))+symsum(((c*U)^k)/factorial(k),k,0,c-1))^-1;
 % Probability of having 4 jobs in the system
 syms k;
-p0=((((c*U)^c)/factorial(c))+((1-U)^(-1))+symsum((c*U)^k/factorial(k),k,0,c-1))^-1;
-p4 = p0/((factorial(c))*c^(4-c))*(lambda*D)^4;
+p4 = (p0/(factorial(c)*c^(4-c)))*(lambda*D)^4;
 fprintf("P(J=4): %f\n", p4);
 
 % Average number of jobs in the system
@@ -70,9 +71,10 @@ fprintf("Average time spent in the queue: %f sec\n\n", QueueTime);
 D = 2.7;
 c=3;
 fprintf("--- <Exercise 3 - M/M/inf> ----\n");
-% Probability of having 4 jobs in the system
+%Probability of having zero job in the system
 p0=exp(-(lambda*D));
-p4 = (p0/factorial(c))*(lambda*D)^4;
+% Probability of having 4 jobs in the system
+p4 = (p0/factorial(4))*(lambda*D)^4;
 fprintf("P(J=4): %f\n", p4);
 
 % Average number of jobs in the system

@@ -15,25 +15,6 @@ Wp = 0.75;
 % Erlang - 4G constants
 Ml = 8;
 Ms = 3;
-%{
-%      s1   s2  s3  s4  s5  s6  s7
-Q = [  -Cl1*pW-Cl1*pW-Cl1*pM,    0, Cl1*pW, Cl1*pW,Cl1*pM,  0,  0;             %s1
-       0,-Cl2*pW-Cl2*pW-Cl2*pM, Cl2*pW, Cl2*pW,Cl2*pM,  0,  0;             %s2
-     Wl1,  Wl1,-Wl1-Wl1,      0,     0,  0,  0;             %s3
-     Wl2,  Wl2,      0,-Wl2-Wl2,     0,  0,  0;             %s4
-       0,    0,      0,      0,   -Ml, Ml,  0;             %s5
-       0,    0,      0,      0,     0, -Ml, Ml;             %s6
-      Ml,   Ml,      0,      0,     0,  0,  -Ml-Ml;];           %s7
-
-%      s1   s2  s3  s4  s5  s6  s7
-Q1 = [  -Cl1*pW*Cp-Cl1*pW*(1-Cp)-Cl1*pM,    0, Cl1*pW*Cp, Cl1*pW*(1-Cp),Cl1*pM,  0,  0;             %s1
-       0,-Cl2*pW*Cp-Cl2*pW*(1-Cp)-Cl2*pM, Cl2*pW*Cp, Cl2*pW*(1-Cp),Cl2*pM,  0,  0;             %s2
-     Wl1*Wp,  Wl1*(1-Wp),-Wl1*Wp-Wl1*(1-Wp),      0,     0,  0,  0;             %s3
-     Wl2*Wp,  Wl2*(1-Wp),      0,-Wl2*Wp-Wl2*(1-Wp),     0,  0,  0;             %s4
-       0,    0,      0,      0,   -Ml, Ml,  0;             %s5
-       0,    0,      0,      0,     0, -Ml, Ml;             %s6
-      Ml,   Ml,      0,      0,     0,  0,  -Ml-Ml;];           %s7
-%}
 
 %      s1   s2  s3  s4  s5  s6  s7
 Q = [  -Cl1*pW*Wp-Cl1*pW*(1-Wp)-Cl1*pM,    0, Cl1*pW*Wp, Cl1*pW*(1-Wp),Cl1*pM,  0,  0;             %s1
