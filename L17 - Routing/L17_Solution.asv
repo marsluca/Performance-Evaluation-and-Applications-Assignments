@@ -17,17 +17,12 @@ S = [ 1, 2, 2.5];
     
 %% The visits of the three stations
 v = L * inv(eye(3) - P);
-fprintf('Visits of the three stations: %f <-> %f <-> %f\n', v(1), v(2), v(3));
+fprintf('Visits of the three stations: %f <-> %f <-> %f\n', V1(1), V(2), V(3));
 
 %% The demand of the three station
-D = v.*S;
+D = v*S;
 fprintf('Demand of the three stations: %f <-> %f <-> %f\n', D(1), D(2), D(3));
 
 %% Is the system stable?
 % The system is stable only if the arrival rate is less than 1/maxD
-rDmax = 1/max(D);
-if lambda1 < rDmax
-    fprintf('The system is STABLE beacuse (lambda:%f) < (1/max(D)%f)\n', lambda1, rDmax);
-else
-    fprintf('The system is NOT STABLE (lambda:%f) > (1/max(D):%f)\n', lambda1, rDmax);
-end
+if 
