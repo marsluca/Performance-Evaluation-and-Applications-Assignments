@@ -67,19 +67,11 @@ function run(filename, i)
     
     %% Plotting phase
     figure('Name', filename, 'NumberTitle','off');
-    Inter_ArrivalX = Inter_Arrival(2:end);
-    Inter_ArrivalY = Inter_Arrival;
-    Inter_ArrivalY(end) = [];
-    plot(Inter_ArrivalX(1,:), Inter_ArrivalY(1,:), ".");
-end
-
-
-%% Old Plotting phase
-%{
-    figure('Name', filename, 'NumberTitle','off');
     for j = 1:(N_IA-1) 
         %plot(Inter_Arrival(j), Inter_Arrival(j+1), ".");
         hold on;
         drawnow;
     end
-%}
+    Inter_ArrivalInter_Arrival(2:end);
+    plot(Inter_Arrival(1,:), Inter_Arrival(1,:), ".");
+end
