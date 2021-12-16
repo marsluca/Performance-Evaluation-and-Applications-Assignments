@@ -38,31 +38,26 @@ fprintf("--- <Exercise 2 - G/G/2> ----\n");
 % Inter-arrival time distributed according to a uniform distribution between a and b
 a = 0.1;
 b = 0.2;
-varA = ((b-a)^2)/12;
+
 m1A = (a+b)/2;
 lambda = 1/m1A;
+% Coeff. variation of the inter-arrival time
+staA = sqrt(((b-a)^2)/12);
+ca = staA/m1A;
 
 % Job duration according to an Hyper-Exponential distribution
 u1 = 1;
 u2 = 10;
 p1 = 0.2;
 p2 = 0.8;
-varV = 2*(p1/u1^2+p2/u2^2) - (p1/u1+p2/u2)^2;
-
 % Service time (m1V) (mean)
 D = p1/u1 + p2/u2;
-ro = D/(2*lambda);
-
-% Second moment
 m2 = 2*(p1/u1^2+p2/u2^2);
-
-% Coeff. variation of the inter-arrival time
-staA = sqrt(varA);
-ca = staA/m1A;
 % Coeff. variation of the service time
-staV = sqrt(varV);
+staV = sqrt(m2 - D^2);
 cv = staV/D;
 
+ro = D/(2*lambda^-1);
 % Approximate Average Response time
 R = D+((ca^2+cv^2)/2)*(((ro^2)*D)/(1-ro^2));
 fprintf("Approx. Average Response time: %f seconds\n", R);

@@ -1,0 +1,2 @@
+clear variables;
+clc;
