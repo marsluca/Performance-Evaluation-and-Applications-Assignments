@@ -50,10 +50,11 @@ fprintf("--- <Exercise 2 - M/M/c> ----\n");
 U = lambda*D/c;
 fprintf("Average Utilization (equal to the traffic intensity): %f\n", U);
 
+syms k;
 %Probability of having zero job in the system
 p0=((((c*U)^c)/factorial(c))*((1-U)^(-1))+symsum(((c*U)^k)/factorial(k),k,0,c-1))^-1;
 % Probability of having 4 jobs in the system
-syms k;
+
 p4 = (p0/(factorial(c)*c^(4-c)))*(lambda*D)^4;
 fprintf("P(J=4): %f\n", p4);
 
