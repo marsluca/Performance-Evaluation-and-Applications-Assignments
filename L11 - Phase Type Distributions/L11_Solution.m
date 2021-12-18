@@ -10,7 +10,7 @@ Cl2 = 10;
 Cp = 0.4;
 % HyperExp - Wifi constants
 Wl1 = 1;
-Wl2 = 20;
+Wl2 = 0.2;
 Wp = 0.75;
 % Erlang - 4G constants
 Ml = 8;

@@ -6,7 +6,7 @@ WA = 10;
 WB = 5;
 EA = 8;
 EB = 12;
-TotalTime = 1000;
+TotalTime = 100;
 
 % Rates waiting
 rWA = 1/WA;

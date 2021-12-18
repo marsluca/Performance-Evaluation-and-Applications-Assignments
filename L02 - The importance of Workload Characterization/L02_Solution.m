@@ -37,7 +37,7 @@ function run(filename, i)
         Inter_Arrival(row-1) = difference;
         Sum_Inter_Arrival = Sum_Inter_Arrival + difference;
     end
-    Avg_Inter_Arrival = Sum_Inter_Arrival/A;
+    Avg_Inter_Arrival = Sum_Inter_Arrival/N_IA;
     fprintf('Average Inter-arrival time: %f\n', Avg_Inter_Arrival);
   
     %% The arrival rate [jobs/sec]

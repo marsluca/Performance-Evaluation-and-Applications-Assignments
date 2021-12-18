@@ -2,12 +2,13 @@ clear variables;
 clc;
 
 for i = 1:4 
-    run(sprintf('Data%d.txt', i), i);
+    run(i);
 end
 
-function run(filename, i)
+function run(i)
     % The file contains the "Inter arrival time".
     % It measures the time between the arrivals of two jobs
+    filename = sprintf('Data%d.txt', i);
     fprintf('File name: %s\n', filename);
     records = table2array(readtable(filename));
     fprintf('---------------------------\n');
@@ -90,15 +91,10 @@ function run(filename, i)
     fprintf('---------------------------\n');
     
     %% The cross-covariance for lags m=1, m=2 and m=3
-    ccv1 = sum((records(1:N_IA-1)-m1).*(records(2:N_IA))/(N_IA-1));
-    fprintf('cross-covariance for m=1: %f\n', ccv1);
-    
-    ccv2 = sum((records(1:N_IA-2)-m1).*(records(3:N_IA))/(N_IA-2));
-    fprintf('Cross-covariance for m=2: %f\n', ccv2);
-    
-    ccv3 = sum((records(1:N_IA-3)-m1).*(records(4:N_IA))/(N_IA-3));
-    fprintf('Cross-covariance for m=3: %f\n', ccv3);
-    
+    for m=1:3
+        ccv = sum((records(1:(N_IA-m))-m1).*(records(m+1:N_IA))/(N_IA-m));
+        fprintf('Cross-covariance for m=%d: %f\n', m, ccv);
+    end
     fprintf('\n');
     
     %% Plotting phase
@@ -109,6 +105,11 @@ end
 
 %% Mine percentile function, linear interpolation
 function prctile = my_prctile(records, size, percentage)
+    records = sort(records);
     h = (percentage/100) * (size - 1) + 1;
-    prctile = records(floor(h)) + (h - floor(h)) * (records(floor(h)+1) - records(floor(h)));
+    if floor(h) < size
+        prctile = records(floor(h)) + (h - floor(h)) * (records(floor(h)+1) - records(floor(h)));
+    else
+        prctile = records(size);
+    end
 end
