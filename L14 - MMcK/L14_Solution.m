@@ -21,6 +21,12 @@ fprintf("P(J=4): %f\n", (1-U)*(U)^4);
 % Average number of jobs in the system
 fprintf("Average number of jobs in the system: %f\n", U/(1-U));
 
+% Drop rate
+fprintf("Drop rate: %f\n", 0);
+
+% Throughput
+fprintf("Throughput: %f\n", lambda);
+
 % Average response time and the average time spend in the queue
 R = D/(1-U);
 fprintf("Average response time: %f sec\n", R);
@@ -75,7 +81,7 @@ p0 = double(p0);
 % sum from 1 to c and from c+1 to k
 U = (1*prob_mmc6(1,c) + 2*prob_mmc6(2,c)) + c*(prob_mmc6(3,c)+prob_mmc6(4,c)+prob_mmc6(5,c)+prob_mmc6(6,c));
 %U = symsum(t*prob_mmc6(eval(t),c),t,1,c) + symsum(prob_mmc6(eval(t),c),t,c+1,k);
-fprintf("Utilization: %f\n", U);
+fprintf("Utilization: %f\n", U/c);
 
 % Probability of having 4 jobs in the system
 fprintf("P(J=4): %f\n", prob_mmc6(4,c));

@@ -39,7 +39,13 @@ Ex = [ 0, 1, 1, 0;    %s1
        0, 0, 0, 1;    %s3
        0, 0, 0, 0];   %s4
     
-[t, Sol] = ode45(@(t,x) Q'*x, [0 TotalTime], p0');
+%[t, Sol] = ode45(@(t,x) Q'*x, [0 TotalTime], p0');
+dim = 101;
+t = linspace(0, 100, dim);
+Sol = zeros(dim,4);
+for i=1:size(t,2)
+    Sol(i,:) = p0 * expm(Q*t(i));
+end
 
 %{
 figure(1);
@@ -84,9 +90,7 @@ fprintf("Throughput: %f\n", X);
 %% Number of jobs at t = 10s, t = 20s, t = 50s and t = 100s
 times = [10, 20, 50, 100];
 for i=1:length(times)
-    % Save the index of the time with the closest value to the one specified in the text    
-    [val,idx]=min(abs(t-times(i)));
-    fprintf("Solution found for t=%f is N=%f\n", t(idx), Sol(idx,:) * alphaN');
+    fprintf("N(%d)= %f\n", times(i), Sol(times(i)+1,:) * alphaN');
 end
 
 %% Plotting phase

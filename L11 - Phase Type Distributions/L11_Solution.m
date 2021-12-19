@@ -25,6 +25,10 @@ Q = [  -Cl1*pW*Wp-Cl1*pW*(1-Wp)-Cl1*pM,    0, Cl1*pW*Wp, Cl1*pW*(1-Wp),Cl1*pM,  
        0,    0,      0,      0,     0, -Ml, Ml;             %s6
       Ml*Cp,   Ml*(1-Cp),      0,      0,     0,  0,  -Ml*Cp-Ml*(1-Cp);];           %s7
   
+  
+  
+disp(Q);
+
 %                   s1  s2 s3 s4 s5 s6 s7
 p0 =             [0.5, 0.5, 0, 0, 0, 0, 0];
 alphaComputing =    [1, 1, 0, 0, 0, 0, 0];
@@ -40,7 +44,7 @@ Ex = [ 0, 0, 0, 0, 0, 0, 0;
        0, 0, 0, 0, 0, 0, 0;
        1, 1, 0, 0, 0, 0, 0;];
 
-[t, Sol] = ode45(@(t,x) Q'*x, [0 10], p0');
+[t, Sol] = ode45(@(t,x) Q'*x, [0 1000], p0');
 
 %% Compute the system throughput
 X = 0;
@@ -66,9 +70,11 @@ plot(t, Sol(:,1)+Sol(:,2), t, Sol(:,4)+Sol(:,3), t, Sol(:,5)+Sol(:,6)+Sol(:,7), 
 legend("Computing", "WiFi", "4G");
 xlabel('Seconds') ;
 ylabel('Probability') ;
+xlim([0 50]);
 
 figure('Name', 'Probability of the stages','NumberTitle','off');
 plot(t, Sol, "-");
 legend("Computing stage 1", "Computing stage 2", "Wifi stage 1", "Wifi stage 2", "4G stage 1", "4G stage 2", "4G stage 3");
 xlabel('Seconds') ;
 ylabel('Probability') ;
+xlim([0 50]); 
