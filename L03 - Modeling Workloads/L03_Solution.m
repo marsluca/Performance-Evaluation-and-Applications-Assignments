@@ -21,7 +21,7 @@ function run(i)
     m1 = sum(records) / N_IA;
     fprintf('First moment: %f or %f \n', m1, mean(records));
     
-    % Second moment - standard deviation
+    % Second moment
     m2 = sum(records.^2) / N_IA;
     fprintf('Second moment: %f or %f\n', m2, mean(records.^2));
     
@@ -35,7 +35,7 @@ function run(i)
     fprintf('---------------------------\n');
     
     %% The second, third and fourth centered moments
-    % Second centered moments (or Variance)
+    % Second centered moments (or Variance) - Meausre of the spread
     cm2 = sum((records - m1).^2)/N_IA;
     varX = m2 - m1^2;
     fprintf('Second centered moment (or variance): %f or %f or %f\n', cm2, varX, var(records));
@@ -54,7 +54,9 @@ function run(i)
     stdX = sqrt(varX); 
     fprintf('Standard Deviation: %f\n', stdX);
     
-    % Third standardized moment
+    % Third standardized moment or Skewness - (measure of the symmetry)
+    % positive value -> more probability mass to the left
+    % negative value -> more probability mass to the right
     scm3 = sum(((records - m1)/stdX).^3)/N_IA;
     fprintf('Third standardized moment (or Skewness): %f\n', scm3);
     
@@ -64,33 +66,25 @@ function run(i)
     fprintf('---------------------------\n');
     
     %% Coefficient of Variation and Kurtosis
-    % Coefficient of Variation
+    % Coefficient of Variation - It tells how different is the variance 
+    % compared to the mean
     cv = stdX/m1;  
     fprintf('Coefficient of Variation: %f\n', cv);
      
-    % Kurtosis
+    % Kurtosis - (measure of the peakedness (apice))
     kurtois = scm4 - 3; 
     fprintf('Kurtosis: %f\n', kurtois);
     fprintf('---------------------------\n');
     
     %% The 10%, 25%, 50%, 75% and 90% percentiles
-    % 10 Percentiles of the distribution
-    fprintf('10 Percentiles of the distribution: %f or %f\n', my_prctile(records, N_IA, 10), prctile(records, 10));
-    
-    % 25 Percentiles of the distribution
-    fprintf('25 Percentiles of the distribution: %f or %f\n', my_prctile(records, N_IA, 25), prctile(records, 25));
-    
-    % 50 Percentiles of the distribution
-    fprintf('50 Percentiles of the distribution: %f or %f\n', my_prctile(records, N_IA, 50), prctile(records, 50));
-    
-    % 75 Percentiles of the distribution
-    fprintf('75 Percentiles of the distribution: %f or %f\n', my_prctile(records, N_IA, 75), prctile(records, 75));
-    
-    % 90 Percentiles of the distribution
-    fprintf('90 Percentiles of the distribution: %f or %f\n', my_prctile(records, N_IA, 90), prctile(records, 90));
+    p = [10, 25, 50, 75, 90];
+    for i=1:length(p)
+        fprintf('%d Percentiles of the distribution: %f or %f\n', p(i), my_prctile(records, N_IA, p(i)), prctile(records, p(i)));
+    end
     fprintf('---------------------------\n');
     
     %% The cross-covariance for lags m=1, m=2 and m=3
+    % "m" rapresents the "distance" between two samples
     for m=1:3
         ccv = sum((records(1:(N_IA-m))-m1).*(records(m+1:N_IA))/(N_IA-m));
         fprintf('Cross-covariance for m=%d: %f\n', m, ccv);

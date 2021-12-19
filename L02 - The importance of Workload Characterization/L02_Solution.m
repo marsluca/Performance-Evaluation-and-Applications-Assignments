@@ -44,8 +44,8 @@ function run(filename, i)
     % Total time "T"
     T = table_sec(A,:)-table_sec(1,:);
 
-    Arrival_Rate = A / T;
-    fprintf('Arrival Rate : %f\n', Arrival_Rate);
+    l = A / T;
+    fprintf('Arrival Rate : %f\n', l);
     
     %% Variability
     V = var(Inter_Arrival);
@@ -66,6 +66,7 @@ function run(filename, i)
     fprintf('\n');
     
     %% Plotting phase
+    % Useful to determine the correlation between a set of sample
     figure('Name', filename, 'NumberTitle','off');
     Inter_ArrivalX = Inter_Arrival(2:end);
     Inter_ArrivalY = Inter_Arrival;

@@ -18,19 +18,11 @@ m3 = mean(A.^3);
 % Fourth moment
 m4 = mean(A.^4);
 
-%% Fit the data against the uniform, the exponential, the two stages hyper-exponential and 
-%% the two stage hypo-exponential distributions using the method of moments
-
 %% Uniform "A" method moment
 global Unif_A_MM;
 global Unif_B_MM;
 Unif_A_MM = m1-sqrt(12*(m2-m1.^2))/2;
 Unif_B_MM = m1+sqrt(12*(m2-m1.^2))/2;
-
-
-%% Fit the data against the exponential, the two stages hyper-exponential and the two stage 
-%% hypo-exponential distributions using the method of maximum likelihood
-
 
 
 %% Plotting Phase
