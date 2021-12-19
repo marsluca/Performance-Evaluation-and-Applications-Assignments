@@ -25,9 +25,6 @@ Q = [  -Cl1*pW*Wp-Cl1*pW*(1-Wp)-Cl1*pM,    0, Cl1*pW*Wp, Cl1*pW*(1-Wp),Cl1*pM,  
        0,    0,      0,      0,     0, -Ml, Ml;             %s6
       Ml*Cp,   Ml*(1-Cp),      0,      0,     0,  0,  -Ml*Cp-Ml*(1-Cp);];           %s7
   
-  
-  
-disp(Q);
 
 %                   s1  s2 s3 s4 s5 s6 s7
 p0 =             [0.5, 0.5, 0, 0, 0, 0, 0];
