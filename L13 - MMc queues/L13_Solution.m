@@ -4,6 +4,10 @@ clc;
 % Poisson process arrival rate [job/s]
 lambda = 0.95;
 
+% Kendall's notation
+% Poisson arrival, exponential service time, one server, 
+% infinite queue and infinite population
+
 %% Compare the previous results with the ones of an M/M/1 system, with average service D = 0.9 s.
 % Avg Service time [seconds]
 D = 0.9;
@@ -23,6 +27,10 @@ R = D/(1-U);
 fprintf("Average response time: %f sec\n", R);
 fprintf("Average time spent in the queue: %f sec\n\n", R-D);
 
+% Kendall's notation
+% Poisson arrival, exponential service time, 2 server, 
+% infinite queue and infinite population
+
 %% Exercise 1 - M/M/2
 % Avg Service time [seconds]
 D = 1.8;
@@ -40,6 +48,10 @@ fprintf("Average number of jobs in the system: %f\n", 2*U/(1-U^2));
 % Average response time and the average time spent in the queue
 fprintf("Average response time: %f sec\n", D/(1-U^2));
 fprintf("Average time spent in the queue: %f sec\n\n", ((U^2)*D)/(1-U^2));
+
+% Kendall's notation
+% Poisson arrival, exponential service time, c server, 
+% infinite queue and infinite population
 
 %% Exercise 2 - M/M/c
 % Avg Service time [seconds]
@@ -66,6 +78,10 @@ fprintf("Average number of jobs in the system: %f\n", N);
 QueueTime = (D/(c*(1-U)))/(1+(1-U)*(factorial(c)/(c*U)^c)*symsum((c*U)^k/factorial(k),k,0,c-1));
 fprintf("Average response time: %f sec\n", D + QueueTime);
 fprintf("Average time spent in the queue: %f sec\n\n", QueueTime);
+
+% Kendall's notation
+% Poisson arrival, exponential service time, infinite server, 
+% infinite queue and infinite population
 
 %% Exercise 3 - M/M/inf
 % Avg Service time [seconds]

@@ -27,7 +27,7 @@ end
 
 %% Arrival time
 arrivalTime = zeros(M,K);
-arrivalTimeN = zeros(N,1);
+%arrivalTimeN = zeros(N,1);
 
 % For each run
 for j=1:K
@@ -86,16 +86,6 @@ legend('Arrival', 'Completation');
 xlabel('Time') ;
 ylabel('Jobs') ;
 
-%% Generate the arrival and completation curves for all the samples
-%{
-figure('Name', 'Arrival and Completation curves with all the samples','NumberTitle','off');
-y = [1:N];
-plot(arrivalTimeN, y, '-b', completationTimeN, y, '-r');
-legend('Arrival', 'Completation');
-xlabel('Time') ;
-ylabel('Jobs') ;
-%}
-
 %% Total time = the last completation time
 T = completationTime(end,:) - completationTime(1,:);
 
@@ -124,6 +114,7 @@ function interval = confidenceIntervalK(times, name)
     xb = sum(times)/K;
     
     s2 = 1/(K-1)*sum((times-xb).^2);
+    % I could use also the Normal distribution approximation
     cgN = 1.96;
     
     % Lower average
@@ -139,6 +130,7 @@ function interval = confidenceIntervalN(times, name)
     
     xb = sum(times)/N;
     s2 = 1/(N-1)*sum((times-xb).^2);
+    % I could use also the Normal distribution approximation
     cgN = 1.96;
     
     % Lower average

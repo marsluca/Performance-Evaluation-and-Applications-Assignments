@@ -55,7 +55,7 @@ while t < Tmax
     
     s = ns;
     t = t + dt;
-    trace(end + 1, :) = [t,s];
+    %trace(end + 1, :) = [t,s];
 end
 
 %% Probability of every stage

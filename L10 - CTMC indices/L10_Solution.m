@@ -47,18 +47,6 @@ for i=1:size(t,2)
     Sol(i,:) = p0 * expm(Q*t(i));
 end
 
-%{
-figure(1);
-plot(t, Sol, "-");
-legend("EE", "WE", "EW", "WW");
-
-figure(2);
-plot(t, Sol * alphaU', "-");
-legend("Power");
-
-[Sol(end,:) * alphaU', max(Sol * alphaU')]
-%}
-
 %% Utilization and average number of tasks in execution
 % Utilization calulcated with matrix formulas
 U1 = Sol(end,:) * alphaU';
@@ -103,3 +91,9 @@ figure('Name', 'Avg Number of tasks','NumberTitle','off');
 plot(t, Sol * alphaN', "r-");
 xlabel('Seconds') ;
 ylabel('Tasks') ;
+
+figure('Name', 'Probability of the states in the total range','NumberTitle','off');
+plot(t, Sol, "-");
+legend("EE", "WE", "EW", "WW");
+xlabel('Seconds') ;
+ylabel('Probability') ;

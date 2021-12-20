@@ -3,7 +3,8 @@ clc;
 
 % Constants defined by the text
 N = 500000;
-distNames = ['Uniform distribution', 'Discrete distribution', 'Exponential distribution', 'Hyper-exponential distribution', 'Hypo-exponential distribution', 'Hyper-Erlang distribution'];
+global distNames;
+distNames = ["Uniform distribution", "Discrete distribution", "Exponential distribution", "Hyper-exponential distribution", "Hypo-exponential distribution", "Hyper-Erlang distribution"];
 y = [1:N]/N;
 
 %% Uniform distribution between [10, 20]
@@ -13,7 +14,7 @@ b_unif = 20;
 for i = 1:N
     outUniform(i,1) = a_unif+(b_unif-a_unif)*rand;
 end
-run(outUniform, 'Uniform distribution');
+run(outUniform, distNames(1));
 
 %% Discrete distribution
 % Value, Probability, Cumulative Probability
@@ -33,13 +34,15 @@ for i = 1:N
     end
 end
 
-run(outDiscrete, 'Discrete distribution');
+run(outDiscrete,  distNames(2));
 
 %% Exponential distribution with average 15
 outExponential = -log(rand(N,1))/(1/15);
-run(outExponential, 'Exponential distribution');
+run(outExponential,  distNames(3));
 
 %% Hyper-exponential distribution with two stages (Lambda1=0.1, Lambda2=0.05, p1=0.5)
+% Two or more exponential random variables, that are selected according to
+% discrete random distribution
 outHyper = zeros(N, 1);
 for i=1:N
     if rand < 0.5
@@ -49,13 +52,14 @@ for i=1:N
     end
 end
 
-run(outHyper, 'Hyper-exponential distribution');
+run(outHyper, distNames(4));
 
 
 %% Hypo-exponential distribution with two stages (Lambda1=0.1, Lambda2=0.2)
+% Sum of n exponential distributions
 outHypo = -log(rand(N,1))/0.1 - log(rand(N,1))/0.2;
 
-run(outHypo, 'Hypo-exponential distribution');
+run(outHypo, distNames(5));
 
 %% Hyper-Erlang
 outHyperErlang = zeros(N, 1);
@@ -75,7 +79,7 @@ for i = 1:N
     end
 end
 
-run(outHyperErlang, 'Hyper-Erlang distribution');
+run(outHyperErlang, distNames(6));
 
 figure('Name', sprintf('Distributions for N=%d', N),'NumberTitle','off');
 plot(sort(outUniform), y, '-b', sort(outDiscrete), y, '-r', sort(outExponential),y, '-y', sort(outHyper), y, '-m', sort(outHypo), y, '-g', sort(outHyperErlang), y, '-c');
@@ -83,6 +87,7 @@ legend('Uniform', 'Discrete', 'Exponential', 'Hyper-exponential', 'Hypo-exponent
 xlim([0 50])
 
 function run(out, name)
+    global distNames;
     fprintf("+ %s:\n", name); 
     % Frist moment - mean - average
     m1 =  mean(out);
@@ -93,6 +98,23 @@ function run(out, name)
     cv = std/m1;
     fprintf('Coefficient of Variation: %f\n', cv);
     
+    % Extra Check for Hyper-exponential distribution
+    if strcmp(name, distNames(4))
+        if cv >= 1
+            fprintf('Perfect! Coefficient of Variation is >= 1\n');
+        else 
+            fprintf('Problem! Coefficient of Variation is < 1\n');
+        end
+    end
+    % Extra Check for Hypo-exponential distribution
+    if strcmp(name, distNames(5))
+        if cv < 1
+            fprintf('Perfect! Coefficient of Variation is < 1\n');
+        else 
+            fprintf('Problem! Coefficient of Variation is >= 1\n');
+        end
+    end
+    fprintf('\n');
     % Useful for debugging
     %name = strcat(name, sprintf(' N=%d', N));
     %figure('Name',name ,'NumberTitle','off');

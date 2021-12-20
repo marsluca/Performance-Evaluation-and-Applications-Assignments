@@ -1,6 +1,10 @@
 clear variables;
 clc;
 
+% Kendall's notation
+% Poisson arrival, exponential service time, one server, 
+% infinite queue and infinite population
+
 % M/M/1 queue
 % Poisson process arrival rate [job/s]
 lambda = 10;

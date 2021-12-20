@@ -21,6 +21,7 @@ Q = [ -f-f,   f  ,   f  ,   0;       %s1
 %    s1 s2  s3 s4
 p0 = [1, 0, 0, 0];
 
+%Probability of each stage for each time instant
 [t, Sol] = ode45(@(t,x) Q'*x, [0 10000], p0');
 
 fprintf("Steady state probabilities:\n WW: %f\n FW: %f\n WF: %f\n FF: %f\n", Sol(end,1), Sol(end,2), Sol(end,3), Sol(end,4));

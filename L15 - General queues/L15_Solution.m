@@ -1,6 +1,10 @@
 clear variables;
 clc;
 
+% Kendall's notation
+% Poisson arrival, general service time, 1 server, 
+% infinite queue and infinite population
+
 %% M/G/1 queue
 fprintf("--- <Exercise 1 - M/G/1> ----\n");
 % Arrivals according to a Poisson process of rate [j/s]
@@ -31,6 +35,11 @@ fprintf("Number of jobs: %f or %f\n", N, ro+((lambda^2)*m2)/(2*(1-ro)));
 
 % Utilization of the system
 fprintf("Utilization: %f\n", D*lambda);
+
+
+% Kendall's notation
+% General arrival, General service time, 2 server, 
+% infinite queue and infinite population
 
 clear variables;
 %% G/G/2 queue

@@ -92,9 +92,10 @@ function run(i)
     fprintf('\n');
     
     %% Plotting phase
-    figure('Name', filename, 'NumberTitle','off');
+    figure('Name', sprintf("Cumulative Distribution Function - %s", filename), 'NumberTitle','off');
     % I have to sort the elements to display well the resoults
     plot(sort(records), [1:N_IA]/N_IA, "+");
+    xlabel("Inter arrival times");
 end
 
 %% Mine percentile function, linear interpolation

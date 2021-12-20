@@ -42,7 +42,8 @@ while t < Tmax
     
     s = ns;
     t = t + dt;
-    trace(end + 1, :) = [t,s];
+    % The below command is useful to draw the plot of the stage over time
+    % trace(end + 1, :) = [t,s];
 end
 
 %% Probability of every stage
@@ -53,7 +54,7 @@ fprintf("Probability of being in Second stage: %f\n", Ps2);
 Ps3= Ts3/t;
 fprintf("Probability of being in Third stage: %f\n", Ps3);
 
-%stairs(trace(:,1),trace(:,2));
+% stairs(trace(:,1),trace(:,2));
 
 %% Utilization of the system
 fprintf("Utilization of the system: %f\n", Ps1+Ps2);

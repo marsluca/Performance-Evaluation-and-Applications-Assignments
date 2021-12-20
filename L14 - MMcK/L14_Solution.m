@@ -4,6 +4,10 @@ clc;
 global ro;
 global p0;
 
+% Kendall's notation
+% Poisson arrival, exponential service time, 1 server, 
+% infinite queue and infinite population
+
 %% M/M/1 queue
 fprintf("--- <Exercise 1 - M/M/1> ----\n");
 % Poisson process arrival rate [job/s]
@@ -31,6 +35,10 @@ fprintf("Throughput: %f\n", lambda);
 R = D/(1-U);
 fprintf("Average response time: %f sec\n", R);
 fprintf("Average time spent in the queue: %f sec\n\n", R-D);
+
+% Kendall's notation
+% Poisson arrival, exponential service time, 1 server, 
+% Queue capacity for K=6 jobs and infinite population
 
 %% M/M/1/6 queue
 fprintf("--- <Exercise 1 - M/M/1/6> ----\n");
@@ -62,6 +70,10 @@ fprintf("Throughput: %f or %f\n", X, lambda-Dr);
 R = D*((1-(k+1)*(ro^k)+k*ro^(k+1))/((1-ro)*(1-ro^k)));
 fprintf("Average response time: %f sec\n", R);
 fprintf("Average time spent in the queue: %f sec\n\n", R-D);
+
+% Kendall's notation
+% Poisson arrival, exponential service time, 2 server, 
+% Queue capacity for K=6 jobs and infinite population
 
 %% M/M/2/6 queue
 fprintf("--- <Exercise 2 - M/M/2/6> ----\n");

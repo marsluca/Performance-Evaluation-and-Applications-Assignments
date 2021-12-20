@@ -31,16 +31,17 @@ for i = 1:4
     MaxLikelihood_run(i);
 end
 
+%% Method of moments
 function MM_run(i)
     global Unif_A_MM;
     global Unif_B_MM;
     global A;
     global m1;
     
-    %% Exponential "A" using method moment
+    %% Exponential "A" using method of moments
     E_lambda = 1./m1;
     
-    %% Two stages hyper-exponential "A" using method moment
+    %% Two stages hyper-exponential "A" using method of moments
     % "fsolve" solve system of equations, specified by F(x)=0
     % This function returns the best parameters of p,l1 and l2 that fit the trace
     HyperE_values = fsolve(@HyperExp_MM, [0.5, 0.5, 0.5, i]);
@@ -55,17 +56,22 @@ function MM_run(i)
     % linspace generates N points between X1 and X2
     xUnif = linspace(Unif_A_MM(i), Unif_B_MM(i), 100);
     x = [0:50];
+    
+    % We use the CDF (Cumulative distribution functions)
     plot(sort(A(:,i)), [1:len]/len, ".", xUnif, [0:99]/99, "xg", x, (1-HyperE_values(3)*exp(-x*HyperE_values(1)) - (1-HyperE_values(3))*exp(-x*HyperE_values(2))) , "-r", x, 1-exp(-E_lambda(i)*x), "+m", x, 1-((HypoE_values(2)*exp(-HypoE_values(1)*x))/(HypoE_values(2)-HypoE_values(1)))+((HypoE_values(1)*exp(-HypoE_values(2)*x))/(HypoE_values(2)-HypoE_values(1))), "-y");
     xlim([-20 50]);
     legend("Trace", "Uniform", "HyperExp", "Exponential", "HypoExp");
 end
 
+%% Maximum Likelihood method
+% - Moments can be very different from the original
 function MaxLikelihood_run(i)
     global A;
     len = length(A);
     figure('Name', sprintf('[Maximum likelihood] Trace number: %d\n', i), 'NumberTitle','off');
     
     % mle used to estimate the values
+    % pdf (Probability density functions) 
     HyperE_values = mle(A(:,i), 'pdf', @HyperExp_pdf, 'start', [0.5, 0.5, 0.5], 'LowerBound', [0, 0, 0], 'UpperBound', [Inf, Inf, 1]);
     HypoE_values = mle(A(:,i), 'pdf', @HypoExp_pdf, 'start', [1, 0.5], 'LowerBound', [0, 0], 'UpperBound', [Inf, Inf]);
     E_lambda = mle(A(:,i), 'pdf', @Exp_pdf, 'start', 0.5, 'LowerBound', 0, 'UpperBound', Inf);
@@ -75,6 +81,8 @@ function MaxLikelihood_run(i)
     legend("Trace", "HyperExp", "Exponential", "HypoExp");
 end
 
+%% Method of moments
+% - Procudes distribution that can look very different from the original
 function Values = HyperExp_MM(args)
     global m1;
     global m2;
@@ -107,7 +115,8 @@ function Values = HypoExp_MM(args)
     Values(1,2) = (2/(l1-l2)*(l1/l2^2-l2/l1^2))/m2(i) - 1;
 end
 
-%% Probability density functions
+
+%% Maximum Likelihood method - Probability density functions
 function f = HyperExp_pdf(x, l1, l2, p1)
     f = p1*l1*exp(-l1*x) + (1-p1)*l2*exp(-l2*x);
 end
