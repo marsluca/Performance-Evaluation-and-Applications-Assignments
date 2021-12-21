@@ -11,12 +11,13 @@ Z = 10;
 
 %% The demand of the three station
 D = S.*v;
-fprintf('Visits of the three stations: %f <-> %f <-> %f\n', D(1), D(2), D(3));
+fprintf('Demand of the three stations: %f <-> %f <-> %f\n', D(1), D(2), D(3));
 
 R = zeros(N, 3);
 X = zeros(1, N);
 currentN = zeros(N, 3);
 
+% Computed with the Mean Value Analysis
 for i=1:N
     if i == 1
         R(i,:) = D;
@@ -30,6 +31,8 @@ end
 %% System response time
 FinalR = sum(R(N,:)); 
 fprintf('System response time: %f\n', FinalR);
+
+fprintf('Response time of the tree station: %f, %f, %f\n', R(N,1)/v(1), R(N,2)/v(2), R(N,3)/v(3));
 
 %% System throughput
 fprintf('System throughput: %f\n', X(N));

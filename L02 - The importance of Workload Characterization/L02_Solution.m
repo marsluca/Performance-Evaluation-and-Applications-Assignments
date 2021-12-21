@@ -61,7 +61,7 @@ function run(filename, i)
     
     %% Correlation
     % The cross-covariance for m=1
-    ccv1 = sum((Inter_Arrival(1:N_IA-1)-m1).*(Inter_Arrival(2:N_IA))/(N_IA-1));
+    ccv1 = sum((Inter_Arrival(1:N_IA-1)-m1).*(Inter_Arrival(2:N_IA)-m1)/(N_IA-1));
     fprintf('Correlation (cross-covariance for m=1): %f\n', ccv1);
     fprintf('\n');
     
